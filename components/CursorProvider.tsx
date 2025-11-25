@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { CursorContextType } from '../types';
@@ -20,12 +21,30 @@ export const CursorProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
+    const moveCursor = (e: MouseEvent | TouchEvent) => {
+      let clientX, clientY;
+      
+      if ('touches' in e) {
+        // Touch event
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else {
+        // Mouse event
+        clientX = (e as MouseEvent).clientX;
+        clientY = (e as MouseEvent).clientY;
+      }
+
+      cursorX.set(clientX);
+      cursorY.set(clientY);
     };
+
     window.addEventListener("mousemove", moveCursor);
-    return () => window.removeEventListener("mousemove", moveCursor);
+    window.addEventListener("touchmove", moveCursor, { passive: true });
+    
+    return () => {
+      window.removeEventListener("mousemove", moveCursor);
+      window.removeEventListener("touchmove", moveCursor);
+    };
   }, [cursorX, cursorY]);
 
   const variants = {
@@ -58,7 +77,7 @@ export const CursorProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   return (
     <CursorContext.Provider value={{ cursorVariant, setCursorVariant }}>
       <motion.div
-        className="fixed top-0 left-0 rounded-full pointer-events-none z-[9999] flex items-center justify-center overflow-hidden"
+        className="fixed top-0 left-0 rounded-full pointer-events-none z-[9999] flex items-center justify-center overflow-hidden hidden md:flex" 
         style={{
           left: cursorXSpring,
           top: cursorYSpring,

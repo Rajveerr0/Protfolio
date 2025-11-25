@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useCursor } from './CursorProvider';
@@ -22,7 +23,7 @@ const Skills = () => {
   return (
     <section id="skills" className="relative py-24 px-6 md:px-16 z-10">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-20">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}

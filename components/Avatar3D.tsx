@@ -1,5 +1,5 @@
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Sphere, Torus, Float, Stars, Sparkles, Cloud } from '@react-three/drei';
 import * as THREE from 'three';
@@ -25,17 +25,35 @@ const AvatarModel: React.FC = () => {
   const atmosphereRef = useRef<THREE.Mesh>(null);
   const ringsRef = useRef<THREE.Group>(null);
   
-  const { viewport, mouse } = useThree();
+  const { viewport } = useThree();
+  const scrollProgress = useRef(0);
+
+  // Optimized Scroll Tracking: Avoid layout thrashing in useFrame
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      scrollProgress.current = totalHeight > 0 ? window.scrollY / totalHeight : 0;
+    };
+    
+    // Initial calc
+    handleScroll();
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
   
   useFrame((state) => {
     if (!groupRef.current) return;
     
-    // Calculate scroll progress directly in the frame loop
-    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollProgress = totalHeight > 0 ? window.scrollY / totalHeight : 0;
+    const progress = scrollProgress.current;
     
     // Smooth scroll interpolation
-    const targetY = -scrollProgress * (viewport.height * 0.5); 
+    // Removed expensive DOM reads here
     
     // Complex Movement Logic based on Scroll sections
     let targetX = 2.5; // Default Hero position
@@ -45,13 +63,13 @@ const AvatarModel: React.FC = () => {
     let gestureRotationZ = 0;
     let gestureRotationX = 0;
 
-    if (scrollProgress > 0.1 && scrollProgress <= 0.4) {
+    if (progress > 0.1 && progress <= 0.4) {
       targetX = -2.5; // Move Left (Skills)
       targetZ = 1;
-    } else if (scrollProgress > 0.4 && scrollProgress <= 0.7) {
+    } else if (progress > 0.4 && progress <= 0.7) {
       targetX = 2.5; // Move Right (Projects)
       gestureRotationZ = -0.5; // Tilt to look at projects
-    } else if (scrollProgress > 0.7) {
+    } else if (progress > 0.7) {
       targetX = 0; // Center (Contact)
       targetZ = 2.5; // Come closer
       gestureRotationX = Math.sin(state.clock.elapsedTime * 8) * 0.1; // Nodding
@@ -149,11 +167,27 @@ const AvatarModel: React.FC = () => {
 };
 
 export const AvatarScene: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Simple check for mobile to optimize performance
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <div className="fixed inset-0 z-0 pointer-events-none h-screen w-full bg-obsidian">
       <React.Suspense fallback={null}>
         {/* R3F Canvas */}
-        <Canvas style={{ background: '#030305' }} camera={{ position: [0, 0, 8], fov: 40 }} dpr={[1, 2]}>
+        <Canvas 
+            style={{ background: '#030305' }} 
+            camera={{ position: [0, 0, 8], fov: 40 }} 
+            dpr={isMobile ? 1 : [1, 2]} // Cap DPR on mobile for performance
+        >
             <fog attach="fog" args={['#030305', 5, 30]} />
             
             <ambientLight intensity={0.1} color="#ffffff" />
@@ -161,13 +195,32 @@ export const AvatarScene: React.FC = () => {
             <directionalLight position={[10, 5, 10]} intensity={1.5} color="#ffffff" />
             <spotLight position={[-5, 5, 5]} intensity={2} color="#7c3aed" angle={0.5} penumbra={1} />
             
-            {/* STARS AND NEBULA EFFECT */}
-            <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={0.5} />
-            <Sparkles count={150} scale={12} size={1.5} speed={0.2} opacity={0.5} color="#00f3ff" />
+            {/* OPTIMIZED STARS AND NEBULA EFFECT */}
+            <Stars 
+                radius={100} 
+                depth={50} 
+                count={isMobile ? 1000 : 5000} // Reduce stars on mobile
+                factor={4} 
+                saturation={0} 
+                fade 
+                speed={0.5} 
+            />
+            <Sparkles 
+                count={isMobile ? 50 : 150} // Reduce sparkles on mobile
+                scale={12} 
+                size={1.5} 
+                speed={0.2} 
+                opacity={0.5} 
+                color="#00f3ff" 
+            />
             
-            {/* Nebula Clouds - Subtle colored clouds in background */}
-            <Cloud opacity={0.08} speed={0.2} bounds={[20, 2, 1.5]} segments={10} position={[-5, 0, -10]} color="#7c3aed" />
-            <Cloud opacity={0.08} speed={0.2} bounds={[20, 2, 1.5]} segments={10} position={[5, 2, -10]} color="#00f3ff" />
+            {/* Nebula Clouds - Expensive, remove on mobile */}
+            {!isMobile && (
+              <>
+                <Cloud opacity={0.08} speed={0.2} bounds={[20, 2, 1.5]} segments={10} position={[-5, 0, -10]} color="#7c3aed" />
+                <Cloud opacity={0.08} speed={0.2} bounds={[20, 2, 1.5]} segments={10} position={[5, 2, -10]} color="#00f3ff" />
+              </>
+            )}
 
             <AvatarModel />
         </Canvas>
