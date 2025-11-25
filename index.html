@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Rajveer.dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              obsidian: "#030305",
+              cyberCyan: "#00f3ff",
+              aiPurple: "#7c3aed",
+            },
+            fontFamily: {
+              syncopate: ["Syncopate", "sans-serif"],
+              space: ["Space Grotesk", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Global base styles (since you don't have index.css) -->
+    <style>
+      html,
+      body,
+      #root {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #030305; /* same as obsidian */
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
