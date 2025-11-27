@@ -1,10 +1,9 @@
 import { Project, Skill, Certification } from './types';
 
 export const SOCIAL_LINKS = {
-  github: "https://github.com/Rajveerr0", // Placeholder
-  linkedin: "https://www.linkedin.com/in/rajveer-rajput-536b1925b/", // Placeholder
-  email: "mailto:contact@rajveerrajputmoga1"
-  
+  github: "https://github.com/Rajveerr0",
+  linkedin: "https://www.linkedin.com/in/rajveer-rajput-536b1925b/",
+  email: "mailto:rajveerrajputmoga1@gmail.com?subject=Let's%20Collaborate&body=Hi%20Rajveer,%0D%0A%0D%0AI%20would%20like%20to%20connect%20regarding..."
 };
 
 export const SKILLS: Skill[] = [
