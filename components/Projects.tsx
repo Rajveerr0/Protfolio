@@ -57,9 +57,17 @@ const ProjectCard = memo(({ project, index, onSelect }: { project: typeof PROJEC
                     ))}
                 </div>
                 
-                <a href={project.link || "#"} className="inline-flex items-center gap-2 text-white font-bold font-syncopate text-sm hover:text-cyberCyan transition-colors">
-                    LIVE DEMO <ArrowUpRight size={16} />
-                </a>
+                {project.link && (
+  <a
+    href={project.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center gap-2 text-white font-bold font-syncopate text-sm hover:text-cyberCyan transition-colors"
+  >
+    LIVE DEMO <ArrowUpRight size={16} />
+  </a>
+)}
+
             </div>
             
             {/* Interactive Video Preview */}
