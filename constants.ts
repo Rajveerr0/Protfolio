@@ -32,7 +32,7 @@ export const PROJECTS: Project[] = [
     description: "An intelligent conversational assistant for campus inquiries utilizing LangChain and ChromaDB for vector search, integrated with OpenRouter LLMs.",
     tech: ["LangChain", "Flask", "ChromaDB", "OpenRouter"],
     category: "AI/ML",
-    videoUrl: "/files/0321 (1)(1).mp4",
+    videoUrl: "/files/project-demo.mp4",
     link: "https://pcte-chatbot-1.onrender.com/"
   },
   {
