@@ -6,6 +6,8 @@ export interface Project {
   description: string;
   tech: string[];
   link?: string;
+  githubLink?: string;  // GitHub repository
+  figmaLink?: string;   // Figma design (UI/UX projects)
   category: 'AI/ML' | 'Web' | 'Mobile';
   videoUrl?: string; // Added for project recording
 }

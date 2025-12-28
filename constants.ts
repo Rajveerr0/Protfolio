@@ -32,8 +32,9 @@ export const PROJECTS: Project[] = [
     description: "An intelligent conversational assistant for campus inquiries utilizing LangChain and ChromaDB for vector search, integrated with OpenRouter LLMs.",
     tech: ["LangChain", "Flask", "ChromaDB", "OpenRouter"],
     category: "AI/ML",
-    videoUrl: "https://rlyl2ix43qshzswg.public.blob.vercel-storage.com/0321%20%281%29%284%29.mp4",
-    link: "https://pcte-chatbot-1.onrender.com/"
+    videoUrl: "https://rlyl2ix43qshzswg.public.blob.vercel-storage.com/RAG%20chatbot",
+    link: "https://ai-college-chatbot.vercel.app",
+    githubLink: "https://github.com/Rajveerr0/pcte-chatbot"
   },
   {
     id: "p2",
@@ -41,31 +42,38 @@ export const PROJECTS: Project[] = [
     description: "A scalable cloud utility that automates document format conversion using the Dropbox API, deployed on Render for high availability.",
     tech: ["Python", "Dropbox API", "Render", "Automation"],
     category: "Web",
-    videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+    videoUrl: "https://rlyl2ix43qshzswg.public.blob.vercel-storage.com/converter.mp4",
+    link: "https://wordtopdfconvertor.onrender.com/",
+    githubLink: "https://github.com/Rajveerr0/wordtopdfconvertor"
   },
   {
     id: "p3",
-    title: "Online Dental Clinic",
-    description: "A comprehensive practice management system featuring appointment scheduling, patient records, and admin dashboard.",
-    tech: ["HTML", "CSS", "JS", "PHP", "MySQL"],
+    title: "ConnectU- Student & Alumni Networking Platform",
+    description: "A role-based web application connecting students and alumni with features like secure authentication, job postings, mentorship access, and personalized dashboards.",
+    tech: ["React.js", "Node.js", "JWT Auth", "Supabase", "vercel"],
     category: "Web",
-    videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+    videoUrl: "https://rlyl2ix43qshzswg.public.blob.vercel-storage.com/campusbridge",
+    link: "https://connectu-phi.vercel.app/",
+    githubLink:"https://github.com/Rajveerr0/connectu"
   },
-  {
-    id: "p4",
-    title: "PCTE Hostel Portal",
-    description: "A digitized hostel management solution handling room allocation, student complaints, and automated notifications via PHPMailer.",
-    tech: ["PHP", "MySQL", "PHPMailer", "Bootstrap"],
-    category: "Web",
-    videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
-  },
+  // {
+  //   id: "p4",
+  //   title: "PCTE Hostel Portal",
+  //   description: "A digitized hostel management solution handling room allocation, student complaints, and automated notifications via PHPMailer.",
+  //   tech: ["PHP", "MySQL", "PHPMailer", "Bootstrap"],
+  //   category: "Web",
+  //   videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+  //   githubLink:"https://github.com/Rajveerr0/pcte-hostel-portal"
+  // },
   {
     id: "p5",
     title: "KNPC App UI",
     description: "High-fidelity mobile application prototype designed in Figma focusing on user-centric navigation and modern aesthetics.",
     tech: ["Figma", "Prototyping", "UI/UX"],
     category: "Mobile",
-    videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+    videoUrl: "https://rlyl2ix43qshzswg.public.blob.vercel-storage.com/knpc",
+    figmaLink:"https://www.figma.com/design/zln3yku4v8lyWgtTTqIeG3/KNPC-App?node-id=0-1&p=f&t=GWuw8DqDAXoK8caI-0",
+    link: "https://www.figma.com/proto/zln3yku4v8lyWgtTTqIeG3/KNPC-App?node-id=10-2&p=f&t=GWuw8DqDAXoK8caI-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=10%3A2"
   }
 ];
 
