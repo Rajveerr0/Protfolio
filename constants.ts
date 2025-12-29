@@ -33,7 +33,7 @@ export const PROJECTS: Project[] = [
     tech: ["LangChain", "Flask", "ChromaDB", "OpenRouter"],
     category: "AI/ML",
     videoUrl: "https://rlyl2ix43qshzswg.public.blob.vercel-storage.com/RAG%20chatbot",
-    link: "https://ai-college-chatbot.vercel.app",
+    link: "https://pcte-chatbot-1.onrender.com",
     githubLink: "https://github.com/Rajveerr0/pcte-chatbot"
   },
   {
