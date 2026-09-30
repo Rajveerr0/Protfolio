@@ -6,22 +6,58 @@ export const SOCIAL_LINKS = {
   email: "mailto:rajveerrajputmoga1@gmail.com?subject=Let's%20Collaborate&body=Hi%20Rajveer,%0D%0A%0D%0AI%20would%20like%20to%20connect%20regarding..."
 };
 
-export const SKILLS: Skill[] = [
+export const SKILLS = [
   {
-    category: "AI/ML & Data",
-    items: ["LangChain", "RAG Pipelines", "Vertex AI", "Gemini API", "LLM Apps", "Python"]
+    category: "AI & Generative AI",
+    items: [
+      "Python",
+      "LangChain",
+      "RAG",
+      "Gemini API",
+      "Vertex AI",
+      "LLM Apps",
+      "ChromaDB",
+      "OpenRouter"
+    ]
   },
   {
-    category: "Backend",
-    items: ["Flask", "Python", "PHP", "MySQL", "REST APIs"]
+    category: "Full-Stack Development",
+    items: [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Flask",
+      "PHP",
+      "MySQL",
+      "REST APIs",
+      "Supabase"
+    ]
   },
   {
-    category: "Frontend",
-    items: ["React", "TypeScript", "Tailwind CSS", "HTML5/CSS3", "Framer Motion"]
+    category: "Robotics & IoT",
+    items: [
+      "Arduino",
+      "IoT",
+      "Sensors & Actuators",
+      "LEGO Mindstorms EV3",
+      "Pictoblox",
+      "Robotics Programming",
+      "STEM Education",
+      "Automation"
+    ]
   },
   {
     category: "Tools & Cloud",
-    items: ["Git", "Docker", "Linux", "Figma", "Jira", "Google Cloud"]
+    items: [
+      "Git",
+      "Docker",
+      "Linux",
+      "Figma",
+      "Jira",
+      "Google Cloud",
+      "Vercel",
+      "Render"
+    ]
   }
 ];
 
